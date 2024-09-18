@@ -18,7 +18,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name, //  aqui eu já poderia um método para altrar os nomes e deixar em caixa alta: 'name' => strtoupper($this->name),
-            'descriptin' => $this->description,
+            'email' => $this->email,
         ];
     }
 }
