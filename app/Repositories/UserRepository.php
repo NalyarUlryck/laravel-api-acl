@@ -21,6 +21,14 @@ class UserRepository
          * essa função primeiro valida se o $filter atende o if e depois adiciona o where que de fato será aglutinado à consultado
          */
     }
+
+    public function createNew(string $name, string $email, string $password) : User {
+        return $this->user->create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password
+        ]);
+    }
 }
 
 /**
