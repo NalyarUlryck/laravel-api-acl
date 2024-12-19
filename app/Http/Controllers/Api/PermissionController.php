@@ -27,7 +27,7 @@ class PermissionController extends Controller
             page: $request->page ?? 1,
             filter: $request->get('filter', '')
         );
-        return PermissionResource::collection($permissions); // usando Resource para personalizar/ padronizar o retorno de usuários.
+        return PermissionResource::collection($permissions); // usando Resource para personalizar/ padronizar o retorno das permissões.
     }
 
     /**
@@ -45,7 +45,7 @@ class PermissionController extends Controller
     public function show(string $id)
     {
         if (!$permission = $this->permissionRepository->findById($id)) {
-            return response()->json(['message' => 'permission not found'], HttpResponse::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'permission not found'], 404);
         }
         return new PermissionResource($permission);
     }
@@ -55,6 +55,7 @@ class PermissionController extends Controller
      */
     public function update(UpdatePermissionRequest $request, string $id)
     {
+        // dd($request->validated());
         $response = !$this->permissionRepository->update(new EditPermissionDTO(...[$id,...$request->validated()]));
 
         if ($response) {

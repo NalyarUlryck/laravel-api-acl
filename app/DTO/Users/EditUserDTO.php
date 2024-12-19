@@ -2,11 +2,11 @@
 
 namespace App\DTO\Users;
 
-class EditUserDTO
+readonly class EditUserDTO
 {
     public function __construct(
-        readonly public string $id,
-        readonly public string $name,
-        readonly public ?string $password = null // esse "?" torna a senha opcional.
+        public string $id,
+        public string $name,
+        public ?string $password = null // esse "?" torna a senha opcional.
     ) {}
 }

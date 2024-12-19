@@ -17,7 +17,7 @@ class UserResource extends JsonResource
         // return parent::toArray($request); // Aqui retornaria os dados do que recebeu do UserController
         return [
             'id' => $this->id,
-            'name' => $this->name, //  aqui eu já poderia um método para altrar os nomes e deixar em caixa alta: 'name' => strtoupper($this->name),
+            'name' => $this->name, //  aqui eu já poderia ter um método para alterar os nomes e deixar em caixa alta: 'name' => strtoupper($this->name),
             'email' => $this->email,
         ];
     }

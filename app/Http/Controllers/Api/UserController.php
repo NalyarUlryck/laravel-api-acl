@@ -25,7 +25,7 @@ class UserController extends Controller
         $users = $this->userRepository->getPaginate(
             totalPerPage: $request->total_per_page ?? 15,
             page: $request->page ?? 1,
-            filter: $request->get('filter', '')
+            filter: $request->get('filter', '') // esp.: É só mais uma forma de pegar uma informação da requisição como foi feito acima.
         );
         return UserResource::collection($users); // usando Resource para personalizar/ padronizar o retorno de usuários.
     }

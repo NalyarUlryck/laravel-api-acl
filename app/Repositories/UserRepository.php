@@ -11,7 +11,7 @@ class UserRepository
 {
     public function __construct(protected User $user) {}
 
-    public function getPaginate(int $totalPerPage = 15,int $page = 1, string $filter = ''): LengthAwarePaginator
+    public function getPaginate(int $totalPerPage, int $page, string $filter): LengthAwarePaginator
     {
         return $this->user->where(function ($query) use ($filter) {
             if ($filter !== '') {
@@ -61,6 +61,7 @@ class UserRepository
         }
         return $user->delete();
     }
+
 }
 
 /**

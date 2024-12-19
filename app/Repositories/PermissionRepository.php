@@ -36,6 +36,7 @@ class PermissionRepository
 
     public function update(EditPermissionDTO $dto): bool
     {
+        // dd((array) $dto);
         if (!$permission = $this->findById($dto->id)) {
             return false;
         }

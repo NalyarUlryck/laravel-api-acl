@@ -2,10 +2,10 @@
 
 namespace App\DTO\Permissions;
 
-class CreatePermissionDTO
+readonly class CreatePermissionDTO
 {
     public function __construct(
-        readonly public string $name,
-        readonly public string $description = ''
+        public string $name,
+        public string $description = ''
     ) {}
 }

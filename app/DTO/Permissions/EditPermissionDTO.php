@@ -2,11 +2,11 @@
 
 namespace App\DTO\Permissions;
 
-class EditPermissionDTO extends CreatePermissionDTO
+readonly class EditPermissionDTO extends CreatePermissionDTO
 {
     public function __construct(
-        readonly public string $id,
-        readonly public string $name,
-        readonly public string $description,
+        public string $id,
+        public string $name,
+        public string $description
     ) {}
 }
