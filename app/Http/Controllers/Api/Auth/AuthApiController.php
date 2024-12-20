@@ -23,7 +23,7 @@ class AuthApiController extends Controller
             ]);
         }
 
-        // $user->tokens()->delete();
+        $user->tokens()->delete(); // Deleta os tokens antigos do usuário.
         $token =  $user->createToken($request->device_name)->plainTextToken;
 
         return response()->json(['token' => $token]);
