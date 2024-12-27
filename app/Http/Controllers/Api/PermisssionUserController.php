@@ -12,6 +12,10 @@ class PermisssionUserController extends Controller
 
     public function syncPermissionOfUser(string $id, Request $request)
     {
-        $this->userRepository->syncPermissions($id, $request->permissions);
+       $reponse = $this->userRepository->syncPermissions($id, $request->permissions);
+       if (!$reponse) {
+              return response()->json(['message' => 'Erro ao sincronizar permissões'], 404);
+       }
+         return response()->json(['message' => 'Permissões sincronizadas com sucesso'], 200);
     }
 }
