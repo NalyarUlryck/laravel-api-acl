@@ -32,7 +32,7 @@ class AuthApiController extends Controller
     public function me()
     {
         $user = Auth::user();
-        return new UserResource($user);
+        return new UserResource($user->load('permissions'));
     }
 
     public function logout()

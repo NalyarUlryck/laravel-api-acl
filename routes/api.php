@@ -10,7 +10,7 @@ Route::post('/auth', [AuthApiController::class, 'auth'])->name('auth.login');
 Route::get('/', fn() => response()->json(['message' => 'ok']));
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/me', [AuthApiController::class, 'me'])->name('auth.me');
+    Route::get('/me', [AuthApiController::class, 'me'])->name('auth.me');
     Route::post('/logout', [AuthApiController::class, 'logout'])->name('auth.logout');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
