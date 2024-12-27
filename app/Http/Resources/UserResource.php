@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name, //  aqui eu já poderia ter um método para alterar os nomes e deixar em caixa alta: 'name' => strtoupper($this->name),
             'email' => $this->email,
+            'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
         ];
     }
 }

@@ -17,7 +17,8 @@ class UserRepository
             if ($filter !== '') {
                 $query->where('name', 'like', "%{$filter}%");
             }
-        })->paginate($totalPerPage, ['*'], 'page', $page);
+        })->with(['permissions'])
+        ->paginate($totalPerPage, ['*'], 'page', $page);
         /**
          * Estou passando a consulta($query) junto com o filtro ($filter) para a função de callback;
          * essa função primeiro valida se o $filter atende o if e depois adiciona o where que de fato será aglutinado à consultado
@@ -69,6 +70,14 @@ class UserRepository
         }
         $user->permissions()->sync($permissions);
         return true;
+    }
+
+    public function getPermissions(string $id): ?array
+    {
+        if (!$user = $this->findById($id)) {
+            return null;
+        }
+        return $user->permissions->toArray();
     }
 
 }

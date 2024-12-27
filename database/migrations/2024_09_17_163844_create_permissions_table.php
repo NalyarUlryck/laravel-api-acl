@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('permission-user', function (Blueprint $table) {
+        Schema::create('permission_user', function (Blueprint $table) {
             $table->uuid('permission_id');
             $table->uuid('user_id');
             $table->primary(['permission_id', 'user_id']);
@@ -32,7 +32,16 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Remover as restrições de chave estrangeira
+        Schema::table('permission_user', function (Blueprint $table) {
+            $table->dropForeign(['permission_id']);
+            $table->dropForeign(['user_id']);
+        });
+
+        // Excluir as tabelas
         Schema::dropIfExists('permission_user');
         Schema::dropIfExists('permissions');
     }
+
+
 };

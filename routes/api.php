@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::apiResource('permissions', PermissionController::class);
     Route::post('/users/{user}/permissions-sync',[PermisssionUserController::class, 'syncPermissionOfUser'])->name('users.permission.sync');
+    Route::post('/users/{user}/permissions',[PermisssionUserController::class, 'getPermissionOfUser'])->name('users.permission.get');
 });
 
