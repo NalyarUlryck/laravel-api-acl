@@ -18,14 +18,14 @@ class UserRepository
                 $query->where('name', 'like', "%{$filter}%");
             }
         })->with(['permissions'])
-        ->paginate($totalPerPage, ['*'], 'page', $page);
+            ->paginate($totalPerPage, ['*'], 'page', $page);
         /**
          * Estou passando a consulta($query) junto com o filtro ($filter) para a função de callback;
          * essa função primeiro valida se o $filter atende o if e depois adiciona o where que de fato será aglutinado à consultado
          */
     }
 
-    public function createNew(CreateUserDTO $dto) : User
+    public function createNew(CreateUserDTO $dto): User
     {
         $data = (array) $dto;
         $data['password'] = bcrypt($data['password']);
@@ -55,7 +55,7 @@ class UserRepository
         return $user->update($data); // Retorna true ou false
     }
 
-    public function delete(string $id):bool
+    public function delete(string $id): bool
     {
         if (!$user = $this->findById($id)) {
             return false;
@@ -82,9 +82,11 @@ class UserRepository
 
     public function hasPermission(User $user, string $permission): bool
     {
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
         return $user->permissions->contains('name', $permission);
     }
-
 }
 
 /**

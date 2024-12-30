@@ -49,4 +49,10 @@ class User extends Authenticatable
     public function permissions() : BelongsToMany {
         return $this->belongsToMany(Permission::class);
     }
+
+    public function isSuperAdmin() : bool {
+        // dd($this->email);
+        $superAdmins = array_flip(config('acl.super_admins'));
+        return isset($superAdmins[$this->email]);
+    }
 }
