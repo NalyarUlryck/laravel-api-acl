@@ -80,6 +80,11 @@ class UserRepository
         return $user->permissions->toArray();
     }
 
+    public function hasPermission(User $user, string $permission): bool
+    {
+        return $user->permissions->contains('name', $permission);
+    }
+
 }
 
 /**
