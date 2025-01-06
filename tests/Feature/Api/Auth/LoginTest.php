@@ -27,7 +27,6 @@ it('should not auth user with wrong password', function () {
 });
 
 it('should not auth user with wrong email', function () {
-    $user = \App\Models\User::factory()->create();
     $data = [
         'email' => 'fake@email.com',
         'password' => 'password',
