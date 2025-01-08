@@ -51,7 +51,6 @@ class User extends Authenticatable
     }
 
     public function isSuperAdmin() : bool {
-        // dd($this->email);
         $superAdmins = array_flip(config('acl.super_admins'));
         return isset($superAdmins[$this->email]);
     }
