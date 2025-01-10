@@ -22,7 +22,6 @@ it('should return user with permissions', function () {
     $response = getJson(route('auth.me'), [
         'Authorization' => 'Bearer ' . $token
     ]);
-    dd($response->json());
     $response->assertStatus(200)->assertJsonStructure(['data' => [
         'id',
         'name',
