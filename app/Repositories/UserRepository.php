@@ -32,9 +32,9 @@ class UserRepository
         return $this->user->create($data);
     }
 
-    public function findById(string $id): ?user
+    public function findById(string $id, array $permissions = []): ?user
     {
-        return $this->user->find($id);
+        return $this->user->with($permissions)->find($id);
     }
 
     public function findByEmail(string $email): ?user

@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'min:3',
+                'min:8',
                 'max:255',
                 Rule::unique('users')
             ],
